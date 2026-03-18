@@ -1,0 +1,40 @@
+version: 2
+
+models:
+  - name: stg_etudiants
+    description: "Données étudiants nettoyées et standardisées"
+    tests:
+      - unique:
+          column_name: "USER_ID || '-' || YEAR_PATH_STARTED"
+    columns:
+      - name: USER_ID
+        description: "Identifiant unique anonymisé"
+        tests:
+          - not_null
+      - name: AGE_GROUP
+        description: "Tranche d'âge de l'étudiant"
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                - '20-24 ans'
+                - '25-29 ans'
+                - '30-34 ans'
+                - '35-39 ans'
+                - '40-44 ans'
+                - '45-49 ans'
+                - '50-54 ans'
+                - '55-59 ans'
+                - '60 ans ou plus'
+      - name: GENDER
+        description: "Genre après traitement des valeurs manquantes"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['F', 'M', 'Non renseigné']
+      - name: YEAR_PATH_STARTED
+        description: "Année de début du parcours"
+        tests:
+          - not_null
+          - accepted_values:
+              values: [2022, 2023, 2024, 2025]

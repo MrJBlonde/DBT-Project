@@ -1,0 +1,28 @@
+version: 2
+
+sources:
+  - name: raw_data
+    database: P8_OPENCLASSROOMS
+    schema: RAW_DATA
+    tables:
+      - name: ETUDIANTS
+        description: "Données sociodémographiques des étudiants Data OC 2022-2025"
+        columns:
+          - name: USER_ID
+            description: "Identifiant unique anonymisé"
+          - name: PATH_CATEGORY_NAME
+            description: "Catégorie du parcours suivi"
+          - name: AGE_GROUP
+            description: "Tranche d'âge de l'étudiant"
+          - name: GENDER
+            description: "Genre déclaré (F, M ou vide)"
+          - name: REGION
+            description: "Région de résidence"
+          - name: YEAR_PATH_STARTED
+            description: "Année de début du parcours"
+
+      - name: INSEE_RAW
+        description: "Données INSEE brutes par région, sexe et âge 2022-2025"
+
+      - name: INSEE_CHOMAGE
+        description: "Taux de chômage par région INSEE 2024-2025"

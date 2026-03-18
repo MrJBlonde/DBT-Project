@@ -28,7 +28,7 @@ final AS (
         c.TAUX_CHOMAGE_T3_2024
     FROM aggregated a
     LEFT JOIN chomage c
-        ON a.REGION = c.REGION
+        ON REPLACE(a.REGION, '-', ' ') = REPLACE(c.REGION, '-', ' ')
 )
 
 SELECT * FROM final

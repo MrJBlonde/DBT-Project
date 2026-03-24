@@ -1,8 +1,13 @@
 -- Mart démographie : table finale d'analyse sociodémographique
--- Agrégation des données OC + enrichissement INSEE
+-- Architecture Bronze → Silver → Gold
+-- Sources : stg_etudiants + stg_insee + stg_chomage
 
 WITH etudiants AS (
     SELECT * FROM {{ ref('stg_etudiants') }}
+),
+
+insee AS (
+    SELECT * FROM {{ ref('stg_insee') }}
 ),
 
 chomage AS (

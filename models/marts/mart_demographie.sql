@@ -6,7 +6,7 @@ WITH etudiants AS (
 ),
 
 chomage AS (
-    SELECT * FROM {{ source('raw_data', 'INSEE_CHOMAGE') }}
+    SELECT * FROM {{ ref('stg_chomage') }}
 ),
 
 aggregated AS (
@@ -28,7 +28,7 @@ final AS (
         c.TAUX_CHOMAGE_T3_2024
     FROM aggregated a
     LEFT JOIN chomage c
-        ON REPLACE(a.REGION, '-', ' ') = REPLACE(c.REGION, '-', ' ')
+        ON REPLACE(a.REGION, '-', ' ') = REPLACE(c.REGION_HARMONISEE, '-', ' ')
 )
 
 SELECT * FROM final
